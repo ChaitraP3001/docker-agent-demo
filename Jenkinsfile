@@ -14,7 +14,7 @@ pipeline {
             }
             
         }
-        stage ('Build') {
+        stage ('Build-Slave 1 preparation') {
             agent{
                 label "sshagent1"
             }
@@ -24,7 +24,7 @@ pipeline {
             }
             
         }
-        stage ('Test'){
+        stage ('Test-slave 1 testing'){
             agent{
                 label "sshagent1"
             }
@@ -34,7 +34,7 @@ pipeline {
             }
             
         }
-         stage('Deploy'){
+         stage('Deploy- slave 2 preparing deploy'){
              agent{
                 label "sshagent2"
             }
