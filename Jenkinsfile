@@ -1,8 +1,6 @@
 pipeline {
     
-   agent {
-        label 'ssh'
-    }
+   agent any
 
     tools {
       maven 'maven3'
@@ -17,6 +15,9 @@ pipeline {
             
         }
         stage ('Build') {
+            agent{
+                label "sshagent1"
+            }
             steps {
                 echo "Build Stage is in progress"
                 sh 'mvn compile'
@@ -24,6 +25,9 @@ pipeline {
             
         }
         stage ('Test'){
+            agent{
+                label "sshagent1"
+            }
             steps {
                 echo "Test Stage is in progress"
                 sh 'mvn test'
@@ -31,6 +35,9 @@ pipeline {
             
         }
          stage('Deploy'){
+             agent{
+                label "sshagent2"
+            }
             input {
               message 'Do you want to deploy build?'
               ok 'Yes I want'
